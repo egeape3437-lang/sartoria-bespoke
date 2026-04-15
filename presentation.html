@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sartoria Bespoke — Design Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0c0c0c;
+  --black-mid:#141414;
+  --black-light:#1e1e1e;
+  --gray-dark:#2a2a2a;
+  --gray-mid:#555;
+  --gray-light:#888;
+  --gray-pale:#bbb;
+  --white-soft:#e8e4de;
+  --white:#f5f3f0;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;font-weight:300;overflow-x:hidden;}
+
+.cover{height:100vh;min-height:580px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;overflow:hidden;}
+.cover-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;}
+.cover-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(12,12,12,0.97) 100%);pointer-events:none;}
+.cover-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+.cover-label{font-size:8.5px;letter-spacing:.55em;text-transform:uppercase;color:var(--gray-light);margin-bottom:28px;opacity:0;animation:fadeUp 1s ease .3s forwards;}
+.cover-brand{font-family:'Cormorant Garamond',serif;font-size:clamp(60px,9vw,120px);font-weight:300;letter-spacing:.18em;color:var(--white);text-transform:uppercase;line-height:.9;opacity:0;animation:fadeUp 1s ease .5s forwards;}
+.cover-sub{font-size:8.5px;letter-spacing:.48em;text-transform:uppercase;color:var(--gray-pale);margin-top:16px;opacity:0;animation:fadeUp 1s ease .7s forwards;}
+.cover-line{width:1px;height:72px;background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent);margin:36px auto 0;opacity:0;animation:fadeUp 1s ease .9s forwards;}
+.cover-stats{display:flex;align-items:center;margin-top:40px;opacity:0;animation:fadeUp 1s ease 1.1s forwards;}
+.cover-stat{text-align:center;padding:0 36px;}
+.cover-stat-val{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--white-soft);line-height:1;}
+.cover-stat-key{font-size:7.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray-light);margin-top:6px;}
+.cover-stat-sep{width:1px;height:36px;background:rgba(255,255,255,.1);flex-shrink:0;}
+.cover-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;opacity:0;animation:fadeUp 1s ease 1.4s forwards;}
+.cover-scroll-txt{font-size:7px;letter-spacing:.38em;text-transform:uppercase;color:var(--gray-mid);}
+.cover-scroll-bar{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:pulse 2s ease-in-out infinite 1.8s;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+.intro{padding:100px 80px 72px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;border-top:1px solid rgba(255,255,255,.06);}
+.intro-eyebrow{font-size:8px;letter-spacing:.48em;text-transform:uppercase;color:var(--gray-light);margin-bottom:18px;display:flex;align-items:center;gap:14px;}
+.intro-eyebrow::before{content:'';display:block;width:26px;height:1px;background:rgba(255,255,255,.25);flex-shrink:0;}
+.intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4.2vw,54px);font-weight:300;line-height:1.1;color:var(--white);letter-spacing:.02em;}
+.intro-title em{font-style:italic;color:rgba(255,255,255,.38);}
+.intro-right{display:flex;flex-direction:column;gap:22px;}
+.intro-body{font-size:12px;line-height:1.9;color:var(--gray-light);letter-spacing:.04em;}
+.concept-list{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;flex-direction:column;gap:12px;}
+.concept-list-item{display:flex;align-items:center;gap:14px;}
+.cl-num{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.15em;color:rgba(255,255,255,.25);width:20px;flex-shrink:0;}
+.cl-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.cl-dot-1{background:#999;}.cl-dot-2{background:#ccc;}.cl-dot-3{background:#fff;}
+.cl-name{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-pale);}
+
+.concept{padding:72px 80px;border-top:1px solid rgba(255,255,255,.06);}
+.concept-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:48px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.06);}
+.concept-id{display:flex;align-items:center;gap:18px;}
+.concept-big-num{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:300;color:rgba(255,255,255,.05);line-height:1;user-select:none;}
+.concept-tag{font-size:7.5px;letter-spacing:.44em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:8px;}
+.concept-name{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,36px);font-weight:400;color:var(--white);letter-spacing:.04em;line-height:1.1;}
+.palette{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.palette-lbl{font-size:7px;letter-spacing:.38em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:4px;}
+.swatches{display:flex;gap:5px;}
+.sw{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.sw-box{width:28px;height:28px;border:1px solid rgba(255,255,255,.1);}
+.sw-name{font-size:6px;letter-spacing:.08em;color:var(--gray-mid);text-align:center;}
+
+.sg{display:grid;gap:3px;}
+.sg-1{grid-template-columns:1fr;}
+.sg-2{grid-template-columns:repeat(2,1fr);}
+.sg-3{grid-template-columns:repeat(3,1fr);}
+.si{position:relative;overflow:hidden;background:#111;cursor:zoom-in;}
+.si img{width:100%;display:block;transition:transform .6s cubic-bezier(.25,.46,.45,.94);vertical-align:bottom;}
+.si:hover img{transform:scale(1.025);}
+.si-ov{position:absolute;inset:0;background:rgba(0,0,0,.72);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:26px 24px;}
+.si:hover .si-ov{opacity:1;}
+.si-ov-lbl{font-size:7px;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:7px;}
+.si-ov-txt{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#fff;line-height:1.25;letter-spacing:.03em;}
+
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:3px;background:rgba(255,255,255,.05);}
+.note{background:var(--black);padding:30px 26px;}
+.note-line{width:28px;height:1px;background:rgba(255,255,255,.18);margin-bottom:16px;}
+.note-t{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--white-soft);margin-bottom:9px;letter-spacing:.04em;}
+.note-b{font-size:10.5px;line-height:1.72;color:var(--gray-light);letter-spacing:.04em;}
+
+.disclaimer-wrap{border-top:1px solid rgba(255,255,255,.06);margin:0 80px;padding:56px 0 80px;}
+.disclaimer-box{background:var(--black-mid);border:1px solid rgba(255,255,255,.07);padding:44px 48px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:start;}
+.disclaimer-icon{width:44px;height:44px;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.disclaimer-icon svg{width:18px;fill:none;stroke:rgba(255,255,255,.35);stroke-width:1.5;}
+.d-lbl{font-size:7.5px;letter-spacing:.44em;text-transform:uppercase;color:var(--gray-mid);margin-bottom:12px;}
+.d-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--white-soft);margin-bottom:12px;letter-spacing:.04em;line-height:1.35;}
+.d-body{font-size:11.5px;line-height:1.9;color:var(--gray-light);letter-spacing:.04em;max-width:660px;}
+.d-body strong{color:var(--white-soft);font-weight:500;}
+
+footer{border-top:1px solid rgba(255,255,255,.06);padding:44px 80px;display:flex;align-items:center;justify-content:space-between;}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.28);}
+.footer-info{font-size:8.5px;letter-spacing:.22em;color:var(--gray-mid);text-align:right;line-height:1.8;}
+
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.lb.on{opacity:1;pointer-events:all;}
+.lb-img{max-width:90vw;max-height:88vh;object-fit:contain;}
+.lb-close{position:absolute;top:28px;right:36px;font-size:8.5px;letter-spacing:.32em;text-transform:uppercase;cursor:pointer;background:none;border:none;color:rgba(255,255,255,.4);font-family:inherit;display:flex;align-items:center;gap:10px;transition:color .2s;}
+.lb-close:hover{color:#fff;}
+.lb-x{position:relative;width:18px;height:18px;}
+.lb-x::before,.lb-x::after{content:'';position:absolute;width:100%;height:1px;background:currentColor;top:50%;left:0;}
+.lb-x::before{transform:rotate(45deg);}.lb-x::after{transform:rotate(-45deg);}
+.lb-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:7px;}
+.lb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:background .2s;border:none;padding:0;}
+.lb-dot.on{background:rgba(255,255,255,.7);}
+.lb-arrows{position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;padding:0 20px;transform:translateY(-50%);pointer-events:none;}
+.lb-arr{width:44px;height:44px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;transition:border-color .2s;}
+.lb-arr:hover{border-color:rgba(255,255,255,.5);}
+.lb-arr svg{width:16px;fill:none;stroke:rgba(255,255,255,.6);stroke-width:1.5;}
+
+@media(max-width:900px){
+  .intro{grid-template-columns:1fr;padding:72px 20px 56px;gap:36px;}
+  .concept{padding:56px 20px;}
+  .concept-head{flex-direction:column;gap:20px;}
+  .sg-2,.sg-3{grid-template-columns:1fr;}
+  .notes{grid-template-columns:1fr;}
+  .disclaimer-wrap{margin:0 20px;}
+  .disclaimer-box{grid-template-columns:1fr;gap:18px;padding:28px 20px;}
+  footer{flex-direction:column;gap:16px;padding:36px 20px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-vignette"></div>
+  <div class="cover-content">
+    <p class="cover-label">Design Concept Presentation</p>
+    <h1 class="cover-brand">Sartoria</h1>
+    <p class="cover-sub">Bespoke Atelier — Homepage Redesign Concepts</p>
+    <div class="cover-line"></div>
+    <div class="cover-stats">
+      <div class="cover-stat"><p class="cover-stat-val">3</p><p class="cover-stat-key">Konsept</p></div>
+      <div class="cover-stat-sep"></div>
+      <div class="cover-stat"><p class="cover-stat-val">14</p><p class="cover-stat-key">Ekran</p></div>
+      <div class="cover-stat-sep"></div>
+      <div class="cover-stat"><p class="cover-stat-val">2025</p><p class="cover-stat-key">Yıl</p></div>
+    </div>
+  </div>
+  <div class="cover-scroll"><span class="cover-scroll-txt">Keşfet</span><div class="cover-scroll-bar"></div></div>
+</section>
+
+<div class="intro">
+  <div>
+    <p class="intro-eyebrow">Proje Özeti</p>
+    <h2 class="intro-title">Üç Farklı<br><em>Lüks Yön,</em><br>Tek Marka.</h2>
+  </div>
+  <div class="intro-right">
+    <p class="intro-body">Sartoria Bespoke için hazırlanan bu tasarım konseptleri, markanın premium kimliğini üç farklı görsel dilde ele alır. Her konsept; tipografi, renk dengesi ve kompozisyon bakımından birbirinden ayrışır, ancak ortak bir lüks tonunu paylaşır.</p>
+    <div class="concept-list">
+      <div class="concept-list-item"><span class="cl-num">V1</span><div class="cl-dot cl-dot-1"></div><span class="cl-name">Soft Gray Luxury — Editorial &amp; Refined</span></div>
+      <div class="concept-list-item"><span class="cl-num">V2</span><div class="cl-dot cl-dot-2"></div><span class="cl-name">Dark Charcoal — Atelier Mood &amp; Authority</span></div>
+      <div class="concept-list-item"><span class="cl-num">V3</span><div class="cl-dot cl-dot-3"></div><span class="cl-name">Black Premium — Sharp Contrast &amp; Bronze</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONCEPT 01 -->
+<div class="concept">
+  <div class="concept-head">
+    <div class="concept-id">
+      <span class="concept-big-num">01</span>
+      <div>
+        <p class="concept-tag">Varyasyon 01 — Soft Gray Luxury</p>
+        <h2 class="concept-name">Editorial &amp; Refined</h2>
+      </div>
+    </div>
+    <div class="palette">
+      <p class="palette-lbl">Renk Paleti</p>
+      <div class="swatches">
+        <div class="sw"><div class="sw-box" style="background:#f4f1ec;"></div><span class="sw-name">Krem<br>#f4f1ec</span></div>
+        <div class="sw"><div class="sw-box" style="background:#c8c4bc;"></div><span class="sw-name">Gri<br>#c8c4bc</span></div>
+        <div class="sw"><div class="sw-box" style="background:#2a2826;"></div><span class="sw-name">Koyu<br>#2a2826</span></div>
+        <div class="sw"><div class="sw-box" style="background:#b8894a;"></div><span class="sw-name">Bronz<br>#b8894a</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sg sg-1" style="margin-bottom:3px;">
+    <div class="si" onclick="lb(0)">
+      <img src="dsafdas.png" alt="V1 Hero">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 01 — Hero Section</span><span class="si-ov-txt">Elegance should feel<br>composed before it feels seen.</span></div>
+    </div>
+  </div>
+  <div class="sg sg-2">
+    <div class="si" onclick="lb(1)">
+      <img src="dsafdsf.png" alt="V1 Layout">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 02 — Navbar &amp; Layout</span><span class="si-ov-txt">Softer luxury direction,<br>quietly confident.</span></div>
+    </div>
+    <div class="si" onclick="lb(2)">
+      <img src="vvx.png" alt="V1 Hero Split">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 03 — Hero Split</span><span class="si-ov-txt">Precision,<br>made graceful.</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Tipografi</h4><p class="note-b">Büyük, nefes alan serif başlıklar. Typografik otorite yoğunluk değil proporsiyon ile sağlanır.</p></div>
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Renk Dengesi</h4><p class="note-b">Krem zemin, soft gri yapı, zarif bronz detaylar. Işıklı, contemporary bir lüks his.</p></div>
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Hedef His</h4><p class="note-b">Premium butik, fashion-editorial kimlik. Güven ve dönüşümü destekleyen, sofistike bir ses.</p></div>
+  </div>
+</div>
+
+<!-- CONCEPT 02 -->
+<div class="concept">
+  <div class="concept-head">
+    <div class="concept-id">
+      <span class="concept-big-num">02</span>
+      <div>
+        <p class="concept-tag">Varyasyon 02 — Dark Charcoal</p>
+        <h2 class="concept-name">Atelier Mood &amp; Modern Authority</h2>
+      </div>
+    </div>
+    <div class="palette">
+      <p class="palette-lbl">Renk Paleti</p>
+      <div class="swatches">
+        <div class="sw"><div class="sw-box" style="background:#111111;"></div><span class="sw-name">Siyah<br>#111111</span></div>
+        <div class="sw"><div class="sw-box" style="background:#2a2a2a;"></div><span class="sw-name">Charcoal<br>#2a2a2a</span></div>
+        <div class="sw"><div class="sw-box" style="background:#c49a5a;"></div><span class="sw-name">Bronz<br>#c49a5a</span></div>
+        <div class="sw"><div class="sw-box" style="background:#e8e4de;"></div><span class="sw-name">Krem<br>#e8e4de</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sg sg-1" style="margin-bottom:3px;">
+    <div class="si" onclick="lb(3)">
+      <img src="sgfds.png" alt="V2 Hero">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 04 — Hero Section</span><span class="si-ov-txt">Tailoring that enters<br>the room before you do.</span></div>
+    </div>
+  </div>
+  <div class="sg sg-2">
+    <div class="si" onclick="lb(4)">
+      <img src="dgfds.png" alt="V2 Services">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 05 — Service Section</span><span class="si-ov-txt">A luxury wardrobe should feel<br>authored, not purchased.</span></div>
+    </div>
+    <div class="si" onclick="lb(5)">
+      <img src="dggg.png" alt="V2 Tailoring">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 06 — Full Visual</span><span class="si-ov-txt">Tailoring speaks<br>before you do.</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Tipografi</h4><p class="note-b">Güçlü, sinematik serif fontlar. Koyu zeminde beyaz tipografi ile maksimum kontrastlı lüks.</p></div>
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Renk Dengesi</h4><p class="note-b">Derin charcoal dominant zemin, warm bronz aksan. Discreet luxury club hissi.</p></div>
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Hedef His</h4><p class="note-b">Private atelier, ceremony wear. Ölçülü, sakin ve karıştırılamaz biçimde yükseltilmiş deneyim.</p></div>
+  </div>
+</div>
+
+<!-- CONCEPT 03 -->
+<div class="concept">
+  <div class="concept-head">
+    <div class="concept-id">
+      <span class="concept-big-num">03</span>
+      <div>
+        <p class="concept-tag">Varyasyon 03 — Black Premium</p>
+        <h2 class="concept-name">Sharp Contrast &amp; Refined Bronze</h2>
+      </div>
+    </div>
+    <div class="palette">
+      <p class="palette-lbl">Renk Paleti</p>
+      <div class="swatches">
+        <div class="sw"><div class="sw-box" style="background:#0a0a0a;border-color:rgba(255,255,255,.2);"></div><span class="sw-name">Siyah<br>#0a0a0a</span></div>
+        <div class="sw"><div class="sw-box" style="background:#181818;"></div><span class="sw-name">Derin Gri<br>#181818</span></div>
+        <div class="sw"><div class="sw-box" style="background:#c09050;"></div><span class="sw-name">Bronz<br>#c09050</span></div>
+        <div class="sw"><div class="sw-box" style="background:#f0ece6;"></div><span class="sw-name">Krem<br>#f0ece6</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sg sg-1" style="margin-bottom:3px;">
+    <div class="si" onclick="lb(6)">
+      <img src="dffadsdsffs.png" alt="V3 Hero">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 07 — Hero Section</span><span class="si-ov-txt">Cut for ceremony.<br>Composed for legacy.</span></div>
+    </div>
+  </div>
+  <div class="sg sg-3">
+    <div class="si" onclick="lb(7)">
+      <img src="fedsfasf.png" alt="V3 Mobile">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 08 — Mobile View</span><span class="si-ov-txt">Zarafet,<br>Ölçüyle Başlar.</span></div>
+    </div>
+    <div class="si" onclick="lb(8)">
+      <img src="dsffds.png" alt="V3 Split Hero">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 09 — Split Hero</span><span class="si-ov-txt">Kusursuz Biçim,<br>Sizin Karakteriniz.</span></div>
+    </div>
+    <div class="si" onclick="lb(9)">
+      <img src="sgg.png" alt="V3 Services Grid">
+      <div class="si-ov"><span class="si-ov-lbl">Ekran 10 — Services Grid</span><span class="si-ov-txt">Ustalığın<br>Dört Boyutu</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Tipografi</h4><p class="note-b">Bodoni tarzı mimari serif fontlar. Keskin kontrast, disiplinli bronz detaylar.</p></div>
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Renk Dengesi</h4><p class="note-b">Tam siyah zemin, derin gri yapı, rafine bronz aksanlar. Bespoke ve akşam giyiminin premium modu.</p></div>
+    <div class="note"><div class="note-line"></div><h4 class="note-t">Hedef His</h4><p class="note-b">Archi-luxury. Daha keskin geometri, gallery presentation kalitesinde. En exclusive versiyon.</p></div>
+  </div>
+</div>
+
+<!-- MOCK EKRANLAR -->
+<div class="concept">
+  <div class="concept-head">
+    <div class="concept-id">
+      <span class="concept-big-num">04</span>
+      <div>
+        <p class="concept-tag">Mock Ekranlar — Gerçek Renk Referansı</p>
+        <h2 class="concept-name">Üretilen Tasarım Ekranları</h2>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:3px;">
+    <div style="padding:18px 0 10px;display:flex;align-items:center;gap:20px;border-top:1px solid rgba(255,255,255,.05);">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.15em;color:rgba(255,255,255,.25);">M1</span>
+      <span style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#666;flex:1;">Testimonial + İstatistik</span>
+      <div style="display:flex;gap:5px;align-items:flex-end;">
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#e8e3d8;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#e8e3d8</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#1e1b17;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#1e1b17</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#b8894a;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#b8894a</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#2a2520;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#2a2520</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#f0ece4;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#f0ece4</p></div>
+      </div>
+    </div>
+    <div class="si" onclick="lb(10)">
+      <img src="mock (1).png" alt="Mock 1" style="width:100%;display:block;vertical-align:bottom;">
+      <div class="si-ov"><span class="si-ov-lbl">Mock 01 — Testimonial + İstatistik</span><span class="si-ov-txt">Onlar Ne Dedi?</span></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:3px;">
+    <div style="padding:18px 0 10px;display:flex;align-items:center;gap:20px;border-top:1px solid rgba(255,255,255,.05);">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.15em;color:rgba(255,255,255,.25);">M2</span>
+      <span style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#666;flex:1;">Atölye / Hakkımızda — 3 Sütun</span>
+      <div style="display:flex;gap:5px;align-items:flex-end;">
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#0e0c0a;border:1px solid rgba(255,255,255,.15);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#0e0c0a</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#1a1714;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#1a1714</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#c4955a;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#c4955a</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#f0ece4;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#f0ece4</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#2a2620;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#2a2620</p></div>
+      </div>
+    </div>
+    <div class="si" onclick="lb(11)">
+      <img src="mock (2).png" alt="Mock 2" style="width:100%;display:block;vertical-align:bottom;">
+      <div class="si-ov"><span class="si-ov-lbl">Mock 02 — Atölye / Hakkımızda</span><span class="si-ov-txt">Üçüncü Kuşak Ustalık.</span></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:3px;">
+    <div style="padding:18px 0 10px;display:flex;align-items:center;gap:20px;border-top:1px solid rgba(255,255,255,.05);">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.15em;color:rgba(255,255,255,.25);">M3</span>
+      <span style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#666;flex:1;">Servis Kartları Grid</span>
+      <div style="display:flex;gap:5px;align-items:flex-end;">
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#e5e0d5;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#e5e0d5</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#1a1816;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#1a1816</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#f0ece8;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#f0ece8</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#b8894a;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#b8894a</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#252220;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#252220</p></div>
+      </div>
+    </div>
+    <div class="si" onclick="lb(12)">
+      <img src="mock (3).png" alt="Mock 3" style="width:100%;display:block;vertical-align:bottom;">
+      <div class="si-ov"><span class="si-ov-lbl">Mock 03 — Servis Kartları Grid</span><span class="si-ov-txt">Her Parça, Bir İmza.</span></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:3px;">
+    <div style="padding:18px 0 10px;display:flex;align-items:center;gap:20px;border-top:1px solid rgba(255,255,255,.05);">
+      <span style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.15em;color:rgba(255,255,255,.25);">M4</span>
+      <span style="font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#666;flex:1;">Hero — Diagonal Split</span>
+      <div style="display:flex;gap:5px;align-items:flex-end;">
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#100e0c;border:1px solid rgba(255,255,255,.15);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#100e0c</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#1c1a17;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#1c1a17</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#c4955a;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#c4955a</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#f0ece4;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#f0ece4</p></div>
+        <div style="text-align:center;"><div style="width:26px;height:26px;background:#b8894a;border:1px solid rgba(255,255,255,.08);"></div><p style="font-size:6px;color:#555;margin-top:4px;">#b8894a</p></div>
+      </div>
+    </div>
+    <div class="si" onclick="lb(13)">
+      <img src="mock (4).png" alt="Mock 4" style="width:100%;display:block;vertical-align:bottom;">
+      <div class="si-ov"><span class="si-ov-lbl">Mock 04 — Hero Diagonal Split</span><span class="si-ov-txt">Sizi Anlatan Çizgi.</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-wrap">
+  <div class="disclaimer-box">
+    <div class="disclaimer-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+    </div>
+    <div>
+      <p class="d-lbl">Önemli Not — Görsel Kullanım Beyanı</p>
+      <h3 class="d-title">Bu sunumdaki görseller yalnızca renk ve ton referansı amacıyla kullanılmıştır.</h3>
+      <p class="d-body">Yukarıda yer alan tüm ekran görüntüleri, tasarım konseptlerinin <strong>renk paleti, tipografik hiyerarşi ve kompozisyon yönelimini</strong> temsil etmek üzere referans amaçlı sunulmuştur. Bu görseller, nihai ürünün tasarımını veya görsel kimliğini yansıtmamaktadır. <strong>Gerçek prodüksiyona alınan versiyon</strong>, Sartoria Bespoke'a ait orijinal fotoğraflar, onaylı marka varlıkları ve ilgili tarafların mutabık kaldığı nihai içerik ile hayata geçirilecektir. Sunumdaki görsellerin herhangi bir ticari, hukuki veya tanıtımsal değeri bulunmamaktadır.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-brand">Sartoria</span>
+  <div class="footer-info">
+    <span>Design Concept Presentation — Confidential</span><br>
+    <span>3 Konsept · 14 Ekran Görüntüsü · 2025</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb">
+  <button class="lb-close" onclick="lbClose()"><div class="lb-x"></div> Kapat (ESC)</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <div class="lb-arrows">
+    <button class="lb-arr" onclick="lbNav(-1)"><svg viewBox="0 0 16 16"><path d="M10 2L4 8l6 6"/></svg></button>
+    <button class="lb-arr" onclick="lbNav(1)"><svg viewBox="0 0 16 16"><path d="M6 2l6 6-6 6"/></svg></button>
+  </div>
+  <div class="lb-dots" id="lbDots"></div>
+</div>
+
+<script>
+const IMGS=['dsafdas.png','dsafdsf.png','vvx.png','sgfds.png','dgfds.png','dggg.png','dffadsdsffs.png','fedsfasf.png','dsffds.png','sgg.png','mock (1).png','mock (2).png','mock (3).png','mock (4).png'];
+let cur=0;
+const lbEl=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbDots=document.getElementById('lbDots');
+function buildDots(){lbDots.innerHTML='';IMGS.forEach((_,i)=>{const d=document.createElement('button');d.className='lb-dot'+(i===cur?' on':'');d.onclick=e=>{e.stopPropagation();lb(i);};lbDots.appendChild(d);});}
+function lb(i){cur=i;lbImg.src=IMGS[i];lbEl.classList.add('on');buildDots();document.body.style.overflow='hidden';}
+function lbClose(){lbEl.classList.remove('on');document.body.style.overflow='';}
+function lbNav(dir){cur=(cur+dir+IMGS.length)%IMGS.length;lbImg.src=IMGS[cur];buildDots();}
+lbEl.addEventListener('click',e=>{if(e.target===lbEl)lbClose();});
+document.addEventListener('keydown',e=>{if(!lbEl.classList.contains('on'))return;if(e.key==='Escape')lbClose();if(e.key==='ArrowRight')lbNav(1);if(e.key==='ArrowLeft')lbNav(-1);});
+</script>
+</body>
+</html>
